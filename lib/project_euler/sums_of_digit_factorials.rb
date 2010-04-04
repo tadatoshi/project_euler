@@ -5,6 +5,7 @@ module ProjectEuler
     
     def initialize
       @factorials = {}
+      @sums_of_factorials_of_digits = {}
     end
 
     # = Calculates factorial for the given integer.
@@ -21,9 +22,11 @@ module ProjectEuler
     # === Example:
     #   f(342) = 3! + 4! + 2! = 32: sum_of_factorials_of_digits(342)
     def sum_of_factorials_of_digits(integer)
-      integer.to_s.chars.to_a.inject(0) { |sum, digit| sum + factorial(digit.to_i) }
+      @sums_of_factorials_of_digits.fetch(integer) do |integer|
+        @sums_of_factorials_of_digits[integer] = integer.to_s.chars.to_a.inject(0) { |sum, digit| sum + factorial(digit.to_i) }
+      end
     end
-    
+
     # = sf(n)
     #  Calculates the sum of the digits of f(n).
     # === Example:
