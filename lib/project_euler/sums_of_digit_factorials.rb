@@ -2,14 +2,20 @@ module ProjectEuler
   
   # = Problem 254: Sums of Digit Factorials
   class SumsOfDigitFactorials
-  
+    
+    def initialize
+      @factorials = {}
+    end
+
     # = Calculates factorial for the given integer.
     # ==== Example:
     #   3! = 6: factorial(3)
     def factorial(integer)
-      integer == 0 ? 1 : integer.downto(1).inject(:*)
+      @factorials.fetch(integer) do |integer|      
+        @factorials[integer] = (integer == 0 ? 1 : integer.downto(1).inject(:*))
+      end
     end
-    
+
     # = f(n)
     #  Calculates the sum of the factorials of the digits of n.
     # === Example:
