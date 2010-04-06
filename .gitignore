@@ -1,0 +1,4 @@
+pkg
+tmp
+project_euler-*.gem
+.DS_Store

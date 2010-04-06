@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.date = %q{2010-04-04}  
   s.summary = %q{Solutions to the problems from Project Euler}  
   s.email = %q{tadatoshi.3.takahashi@gmail.com}  
-  s.extra_rdoc_files = ["README"\]  
+  s.extra_rdoc_files = ["README"]  
   s.files = FileList['lib/**/*.rb', '[A-Z]*', 'spec/**/*'].to_a  
   s.has_rdoc = true
   s.homepage = %q{http://github.com/tadatoshi/project_euler}  

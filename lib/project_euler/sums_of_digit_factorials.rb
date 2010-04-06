@@ -1,6 +1,13 @@
 module ProjectEuler
   
-  # = Problem 254: Sums of Digit Factorials
+  # == Problem 254: Sums of Digit Factorials
+  #  i.e. (from http://projecteuler.net/index.php?section=problems&id=254)
+  #    Define f(n) as the sum of the factorials of the digits of n. For example, f(342) = 3! + 4! + 2! = 32.
+  #    Define sf(n) as the sum of the digits of f(n). So sf(342) = 3 + 2 = 5.
+  #    Define g(i) to be the smallest positive integer n such that sf(n) = i. Though sf(342) is 5, sf(25) is also 5, and it can be verified that g(5) is 25.
+  #    Define sg(i) as the sum of the digits of g(i). So sg(5) = 2 + 5 = 7.
+  #    Further, it can be verified that g(20) is 267 and ∑ sg(i) for 1 ≤ i ≤ 20 is 156.
+  #    What is ∑ sg(i) for 1 ≤ i ≤ 150?
   class SumsOfDigitFactorials
     
     def initialize
@@ -10,7 +17,8 @@ module ProjectEuler
       @sum_of_digits = {}
     end
 
-    # = Calculates factorial for the given integer.
+    # === Factorial
+    #  Calculates factorial for the given integer.
     # ==== Example:
     #   3! = 6: factorial(3)
     def factorial(integer)
@@ -19,9 +27,9 @@ module ProjectEuler
       end
     end
 
-    # = f(n)
+    # === f(n)
     #  Calculates the sum of the factorials of the digits of n.
-    # === Example:
+    # ==== Example:
     #   f(342) = 3! + 4! + 2! = 32: sum_of_factorials_of_digits(342)
     def sum_of_factorials_of_digits(integer)
       @sums_of_factorials_of_digits.fetch(integer) do |integer|
@@ -29,9 +37,9 @@ module ProjectEuler
       end
     end
 
-    # = sf(n)
+    # === sf(n)
     #  Calculates the sum of the digits of f(n).
-    # === Example:
+    # ==== Example:
     #   sf(342) = 3 + 2 = 5: sum_of_digits_of_sum_of_factorials(342)
     def sum_of_digits_of_sum_of_factorials(integer)
       @sum_of_digits_of_sum_of_factorials.fetch(integer) do |integer|
@@ -39,9 +47,9 @@ module ProjectEuler
       end
     end
     
-    # = g(i)
+    # === g(i)
     #  Calculates the smallest positive integer n such that sf(n) = i.
-    # === Example:
+    # ==== Example:
     #   g(5) = 25: smallest_positive_integer_to_produce_sum_of_digits_of_sum_of_factorials(5)  
     def smallest_positive_integer_to_produce_sum_of_digits_of_sum_of_factorials(integer)      
       # e.g. In order to have integer = 20, result must have at least 2 digit because 20 is the sum of the digits, which can have only 1 to 9.
@@ -50,20 +58,20 @@ module ProjectEuler
       result
     end
     
-    # = sg(i)
+    # === sg(i)
     #  Calculates the sum of the digits of g(i).
-    # === Example:
+    # ==== Example:
     #   sg(5) = 2 + 5 = 7: sum_of_digits_of_smallest_positive_integer_to_produce_sum_of_digits_of_sum_of_factorials(5)
     def sum_of_digits_of_smallest_positive_integer_to_produce_sum_of_digits_of_sum_of_factorials(integer)
       sum_of_digits(smallest_positive_integer_to_produce_sum_of_digits_of_sum_of_factorials(integer))
     end
     
-    # = ∑sg(i)
+    # === ∑sg(i)
     #  Calculates the sum of the sums of digits of g(i). 
     #
     # <tt>range</tt>:: e.g. 1..20 for 1 ≤ i ≤ 20
     #
-    # === Example:
+    # ==== Example:
     #   ∑sg(i) for 1 ≤ i ≤ 20 is 156.: sum_of_sums_of_digits_of_smallest_positive_integers_to_produce_sum_of_digits_of_sum_of_factorials(1..20)
     def sum_of_sums_of_digits_of_smallest_positive_integers_to_produce_sum_of_digits_of_sum_of_factorials(range)
       range.inject(0) { |sum, integer| sum + sum_of_digits_of_smallest_positive_integer_to_produce_sum_of_digits_of_sum_of_factorials(integer) }
